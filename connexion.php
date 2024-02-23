@@ -1,9 +1,37 @@
 <?php
+require_once('include.php'); // Cela va démarrer la session et inclure la connexion à la DB
 
-// Inclusion du fichier externe contenant fonctions, variables, etc.
-require_once('include.php');
+// Initialisation des variables d'erreur
+$err_pseudo = $err_password = '';
 
-$var = "Connexion";
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['connexion'])) {
+    $pseudo = trim($_POST['pseudo']);
+    $password = trim($_POST['password']);
+
+    // Validation des entrées
+    if (empty($pseudo)) {
+        $err_pseudo = 'Le champ pseudo est requis.';
+    }
+
+    if (empty($password)) {
+        $err_password = 'Le champ mot de passe est requis.';
+    }
+
+    // Vérification des identifiants de l'utilisateur
+    if (empty($err_pseudo) && empty($err_password)) {
+        $req = $DB->prepare('SELECT * FROM utilisateur WHERE pseudo = ?');
+        $req->execute([$pseudo]);
+        $user = $req->fetch();
+
+        if ($user && password_verify($password, $user['crypt_password'])) {
+            $_SESSION['user'] = $user['pseudo']; // Stocker le pseudo de l'utilisateur dans la session
+            header('Location: bienvenue.php'); // Rediriger vers la page de bienvenue
+            exit;
+        } else {
+            $err_pseudo = 'Pseudo ou mot de passe incorrect.';
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,12 +65,12 @@ $var = "Connexion";
                 <h1>Connexion</h1>
                 <form action="connexion.php" method="post">
                     <div class="mb-4 p-1">
-                        <?php if (isset($err_pseudo)) echo displayErrorMessage($err_pseudo); ?>
+                        <?php if (!empty($err_pseudo)) echo displayErrorMessage($err_pseudo); ?>
                         <label class="form-label text-white fs-5">Pseudo</label>
                         <input class="form-control" type="text" name="pseudo" value="<?php echo isset($pseudo) ? htmlspecialchars($pseudo) : ''; ?>" placeholder="Pseudo" required>
                     </div>
                     <div class="mb-4 p-1">
-                        <?php if (isset($err_password)) echo displayErrorMessage($err_password); ?>
+                        <?php if (!empty($err_password)) echo displayErrorMessage($err_password); ?>
                         <label class="form-label text-white fs-5">Mot de passe</label>
                         <input class="form-control" type="password" name="password" placeholder="Mot de passe" required>
                     </div>

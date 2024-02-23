@@ -50,3 +50,10 @@ button:hover {
     text-align: center;
     font-size: 30px;
 } */
+
+#mail,
+#pseudo,
+#password,
+#confpassword {
+    background-color: #dedef3;
+}

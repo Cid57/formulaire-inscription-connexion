@@ -1,7 +1,11 @@
 <?php
 
-session_start();
-// Inclusion du fichier de configuration de la connexion à la base de données
-// Ce fichier contient les informations nécessaires pour établir une connexion avec la base de données
-// telles que le nom d'hôte, le nom de la base de données, le nom d'utilisateur et le mot de passe.
-include('_db/connexionDB.php');
+
+session_start(); // Démarre la session ici, donc pas besoin de le faire dans chaque fichier
+require_once('_db/connexionDB.php'); // Inclusion de la connexion à la base de données
+
+// Fonction pour afficher les messages d'erreur
+function displayErrorMessage($message)
+{
+    return '<div class="alert alert-danger" role="alert">' . htmlspecialchars($message) . '</div>';
+}
