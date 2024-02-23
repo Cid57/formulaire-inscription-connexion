@@ -38,6 +38,35 @@ if (isset($_SESSION['inscription_success'])) {
             background-repeat: no-repeat;
             background-size: cover;
         }
+
+        .container {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.4);
+
+        }
+
+        .container h1,
+        .container .btn {
+            color: rgba(255, 255, 255, 0.8);
+
+        }
+
+        .container .form-control {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+            padding: 0.2em 0.5em;
+
+        }
+
+        .container .text-white {
+            color: rgba(255, 255, 255, 0.8);
+
+        }
+
+        .container .form-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
     </style>
 </head>
 

@@ -51,6 +51,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['connexion'])) {
             background-repeat: no-repeat;
             background-size: cover;
         }
+
+
+        .container {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            /* Réduire l'opacité à 0.3 */
+        }
+
+        .container h1,
+        .container .form-label,
+        .container .btn {
+            color: rgba(255, 255, 255, 0.8);
+            /* Couleur de texte */
+        }
+
+        .container .form-control {
+            background-color: rgba(255, 255, 255, 0.9);
+            /* Couleur de fond semi-transparente pour les champs de saisie */
+        }
+
+        .container .text-white {
+            color: rgba(255, 255, 255, 0.8);
+            /* Couleur de texte pour le lien */
+        }
     </style>
     <title>Connexion</title>
 </head>
@@ -76,6 +101,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['connexion'])) {
                     </div>
                     <div id="btn" class="mb-4 mt-5 p-1">
                         <button type="submit" name="connexion" class="btn btn-primary">Se connecter</button>
+                    </div>
+                    <!-- Lien pour la réinitialisation du mot de passe -->
+                    <div class="mb-4 p-1 ">
+                        <a class="text-white" href="password_reset.php">Mot de passe oublié ?</a>
                     </div>
                 </form>
             </div>
