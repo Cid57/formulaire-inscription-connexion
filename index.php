@@ -2,9 +2,13 @@
 // Inclusion du fichier nécessaire pour le fonctionnement du script
 require('include.php');
 
+if (isset($_SESSION['id'])) {
+    $var = "Bonjour" . $_SESSION['pseudo'];
+} else {
+    $var = "Bonjour à tous";
+}
 
-// Déclaration d'une variable contenant un message de bienvenue
-$var = "Bonjour le monde";
+
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +16,15 @@ $var = "Bonjour le monde";
 
 <head>
     <title>Accueil</title>
+    <style>
+        body {
+            background-image: url(./img/accueil.jpg);
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
     <?php
     // Inclusion des différents éléments de l'en-tête de la page :
     // Meta tags pour le SEO, les liens vers les feuilles de style CSS et les scripts JavaScript

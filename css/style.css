@@ -2,25 +2,31 @@
     font-family: "Protest Riot", sans-serif;
     text-align: center;
     padding: 10px;
+    color: white;
+    font-size: 63px;
 }
 
 .container {
     font-family: "Protest Riot", sans-serif;
     width: 50%;
-    box-shadow: 10px 10px 47px 4px #232020;
+    box-shadow: 10px 8px 47px 14px #050505;
     border-radius: 20px;
     margin-top: 30px;
     margin-bottom: 30px;
 
 }
 
-
-
 button {
+    align-items: center;
     padding: 7px;
     border-radius: 7px;
     border: none;
+    padding-left: 40px;
+    padding-right: 40px;
+
 }
+
+
 
 button:hover {
     background-color: black;

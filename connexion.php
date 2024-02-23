@@ -1,10 +1,8 @@
 <?php
-// Inclusion d'un fichier externe 'include.php' qui peut contenir des fonctions, des variables,
-// et d'autres fichiers nécessaires à la page actuelle.
-require('include.php');
 
+// Inclusion du fichier externe contenant fonctions, variables, etc.
+require_once('include.php');
 
-// Déclaration d'une variable $var avec la valeur "Connexion" pour être utilisée dans le code HTML ci-dessous.
 $var = "Connexion";
 ?>
 
@@ -13,30 +11,50 @@ $var = "Connexion";
 
 <head>
     <?php
-    // Inclusion des fichiers PHP contenant les balises meta, les liens vers les feuilles de style CSS,
-    // et les scripts JavaScript pour la page. Ces fichiers sont organisés pour faciliter la maintenance
-    // et la réutilisation dans d'autres pages du site web.
-    require('_head/meta.php'); // Fichier contenant les balises meta pour des raisons de SEO et de compatibilité.
-    require('_head/link.php'); // Fichier contenant les liens vers les feuilles de style CSS.
-    require('_head/script.php'); // Fichier contenant les liens vers les scripts JavaScript.
+    require_once('_head/meta.php');
+    require_once('_head/link.php');
+    require_once('_head/script.php');
     ?>
-    <title>Connexion</title> <!-- Titre de la page visible dans l'onglet du navigateur -->
+    <style>
+        body {
+            background-image: url(./img/connexion.jpg);
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    <title>Connexion</title>
 </head>
 
 <body>
-    <?php
-    // Inclusion du menu de navigation du site. Séparer le menu dans un fichier distinct permet
-    // une modification plus aisée et sa réutilisation sur différentes pages du site.
-    require('_menu/menu.php');
-    ?>
-    <h1><?= $var ?></h1> <!-- Affichage de la variable $var qui contient le texte "Connexion" -->
+    <?php require_once('_menu/menu.php'); ?>
 
-    <?php
-    // Inclusion du pied de page du site. Comme pour le menu, le séparer dans un fichier distinct
-    // facilite sa maintenance et sa réutilisation.
-    require('_footer/footer.php');
-    ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h1>Connexion</h1>
+                <form action="connexion.php" method="post">
+                    <div class="mb-4 p-1">
+                        <?php if (isset($err_pseudo)) echo displayErrorMessage($err_pseudo); ?>
+                        <label class="form-label text-white fs-5">Pseudo</label>
+                        <input class="form-control" type="text" name="pseudo" value="<?php echo isset($pseudo) ? htmlspecialchars($pseudo) : ''; ?>" placeholder="Pseudo" required>
+                    </div>
+                    <div class="mb-4 p-1">
+                        <?php if (isset($err_password)) echo displayErrorMessage($err_password); ?>
+                        <label class="form-label text-white fs-5">Mot de passe</label>
+                        <input class="form-control" type="password" name="password" placeholder="Mot de passe" required>
+                    </div>
+                    <div id="btn" class="mb-4 mt-5 p-1">
+                        <button type="submit" name="connexion" class="btn btn-primary">Se connecter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
+    <?php require_once('_footer/footer.php'); ?>
 </body>
 
 </html>

@@ -6,6 +6,7 @@ session_start();
 include('_db/connexionDB.php');
 
 
+
 // Vérification si le formulaire a été soumis
 if (!empty($_POST)) {
     // Extraction des données du formulaire
@@ -30,12 +31,10 @@ if (!empty($_POST)) {
 
         $valid = false;
         $err_pseudo = "Ce champ ne peut pas être vide"; // Message d'erreur si le pseudo est vide
-    } elseif (grapheme_strlen($pseudo) < 4) {
-
+    } elseif (grapheme_strlen($pseudo) < 5) {
         $valid = false;
         $err_pseudo = "Le pseudo doit faire plus de 5 caractères";
     } elseif (grapheme_strlen($pseudo) > 25) {
-
         $valid = false;
         $err_pseudo = "Le pseudo doit faire moins de 26 caractères (" . grapheme_strlen($pseudo) . "/25)";
     } else {
@@ -78,7 +77,7 @@ if (!empty($_POST)) {
         if ($req_result) {
             // Si un résultat est retourné, l'adresse e-mail est déjà utilisée, donc le formulaire n'est pas valide
             $valid = false; // Variable pour indiquer que le formulaire n'est pas valide
-            $err_mail = "Cette adresse e-mail est déjà utilisée"; // Message d'erreur si l'e-mail est déjà utilisé
+            $err_mail = "Cette adresse email est déjà utilisée"; // Message d'erreur si l'e-mail est déjà utilisé
         }
     }
 
@@ -95,6 +94,13 @@ if (!empty($_POST)) {
         // Cryptage du mot de passe
         $crypt_password = password_hash($password, PASSWORD_DEFAULT);
 
+        echo $crypt_password;
+        if (password_verify($password, $crypt_password)) {
+            echo 'Le mot de passe est valide';
+        } else {
+            echo 'Le mot de passe est invalide';
+        }
+
         // Date de création et de connexion
         $date_creation = date('Y-m-d H:i:s');
         $date_connexion = date('Y-m-d H:i:s');
@@ -108,7 +114,7 @@ if (!empty($_POST)) {
             // Définir un message de confirmation dans la session
             $_SESSION['inscription_success'] = "Inscription réussie ! Vous pouvez maintenant vous connecter.";
             // Redirection vers la page d'inscription ou de connexion
-            header('Location: inscription.php?inscription=success');
+            header('Location: connexion.php?inscription=success');
             exit;
         } else {
             // Afficher l'erreur si l'exécution a échoué

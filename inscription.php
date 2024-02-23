@@ -28,7 +28,16 @@ include('inscription_traitement.php');
             margin-bottom: 15px;
             border: 1px solid #3c763d;
         }
+
+        body {
+            background-image: url(./img/header-principal.jpg);
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     </style>
+
 </head>
 
 <body>
@@ -43,50 +52,50 @@ include('inscription_traitement.php');
             <div class="col-6">
                 <h1>Inscription</h1>
                 <!-- Formulaire d'inscription avec la méthode POST pour envoyer les données -->
-                <form action="inscription.php" method="post">
-                    <div class="mb-3">
+                <form action="inscription_traitement.php" method="post">
+                    <div class="mb-3 p-1">
                         <?php
                         // Affiche un message d'erreur si le pseudo est incorrect
                         if (isset($err_pseudo)) {
                             echo displayErrorMessage($err_pseudo);
                         }
                         ?>
-                        <label class="form-label">Pseudo</label>
+                        <label class="form-label text-white fs-5">Pseudo</label>
                         <!-- Champ de saisie pour le pseudo avec pré-remplissage si déjà défini -->
                         <input class="form-control" type="text" name="pseudo" value="<?php if (isset($pseudo)) {
                                                                                             echo $pseudo;
                                                                                         } ?>" placeholder="Pseudo">
                     </div>
-                    <div class="mb-3 ">
+                    <div class="mb-3 p-1 ">
                         <?php
                         // Affiche un message d'erreur si l'email est incorrect
                         if (isset($err_mail)) {
                             echo displayErrorMessage($err_mail);
                         }
                         ?>
-                        <label class="form-label">Mail</label>
+                        <label class="form-label text-white fs-5">Mail</label>
                         <!-- Champ de saisie pour l'email avec pré-remplissage si déjà défini -->
                         <input class="form-control" type="email" name="mail" value="<?php if (isset($mail)) {
                                                                                         echo $mail;
                                                                                     } ?>" placeholder="Mail">
                     </div>
-                    <div class="mb-3 ">
+                    <div class="mb-3 p-1">
                         <?php
                         // Affiche un message d'erreur si le mot de passe est incorrect
                         if (isset($err_password)) {
                             echo displayErrorMessage($err_password);
                         }
                         ?>
-                        <label class="form-label">Mot de passe</label>
+                        <label class="form-label text-white fs-5">Mot de passe</label>
                         <!-- Champ de saisie pour le mot de passe -->
                         <input class="form-control" type="password" name="password" placeholder="Mot de passe">
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Confirmation Mot de passe</label>
+                    <div class="mb-3 p-1">
+                        <label class="form-label text-white fs-5">Confirmation Mot de passe</label>
                         <!-- Champ de saisie pour la confirmation du mot de passe -->
                         <input class="form-control" type="password" name="confpassword" value="" placeholder="Confirmation Mot de passe">
                     </div>
-                    <div class="mb-3">
+                    <div id="btn" class="mb-3 p-1">
                         <!-- Bouton d'envoi du formulaire -->
                         <button type="submit" name="inscription">Inscription</button>
                     </div>
