@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['reset_request'])) {
         // NOTE : Utilisez PHPMailer ou une bibliothèque similaire pour envoyer l'email
         // Le lien de réinitialisation pourrait ressembler à : https://votredomaine.com/reset_password.php?token=le_token_generé
 
-        $message = 'Un e-mail de réinitialisation a été envoyé si l\'adresse est valide.';
+        $message = 'Un e-mail de réinitialisation a été envoyé avec succès ( Aller dans votre boite mail).';
     } else {
         // L'email n'existe pas
         $message = 'Aucun compte trouvé avec cette adresse e-mail.';

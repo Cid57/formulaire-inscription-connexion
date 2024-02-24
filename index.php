@@ -4,9 +4,10 @@ require('include.php');
 
 if (isset($_SESSION['id'])) {
     $var = "Bonjour" . $_SESSION['pseudo'];
-} else {
-    $var = "Bonjour à tous";
 }
+// else {
+//     $var = "<p class='text-center pt-5 display-1 m-5' style='color:red' >Bonjour à tous, <br> Bienvenue sur mon site de démo</p>";
+// }
 
 
 ?>
@@ -40,8 +41,11 @@ if (isset($_SESSION['id'])) {
     // Inclusion du menu de navigation du site
     require('_menu/menu.php');
     ?>
+    <div class="bienvenue">
+        <h1>Bonjour à tous, <br> Bienvenue sur mon site de démo</h1>
+    </div>
 
-    <h1><?= $var ?></h1> <!-- Affichage du message de bienvenue déclaré plus haut dans le script PHP -->
+
     <?php
     // Inclusion du pied de page du site
     require('_footer/footer.php');

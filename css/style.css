@@ -35,25 +35,19 @@ button:hover {
 }
 
 
-/* .resultat-message {
-    background-color: #f0f0f0;
-    padding: 10px;
-    width: 50vw;
-    margin: auto;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 39px;
-
-}
-
-.erreur-message {
-    text-align: center;
-    font-size: 30px;
-} */
-
 #mail,
 #pseudo,
 #password,
 #confpassword {
     background-color: #dedef3;
+}
+
+.bienvenue h1 {
+    font-family: "Protest Riot", sans-serif;
+    color: rgb(58, 35, 35);
+    text-align: center;
+    font-size: 5em;
+    padding-top: 150px;
+
+
 }
